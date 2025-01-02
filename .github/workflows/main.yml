@@ -1,44 +1,27 @@
-name: Star
+name: Log Current Time Every 15 Minutes
 
 on:
-
-  push:
-    branches:
-      - main
-      
   schedule:
-  - cron: "* * * * *"
+    - cron: "*/15 * * * *" # Chạy mỗi 15 phút
+  workflow_dispatch: # Cho phép chạy thủ công nếu cần
 
 jobs:
-  auto_commit:
+  write-log:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-         persist-credentials: false
-         fetch-depth: 0
 
-      - name: Modify last update
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Write current time to log file
         run: |
-          d='DATE '`date '+%Y-%m-%d %H:%M:%S'`
-          echo $d > XW
-          
-      - name: Commit changes
-        run: | 
-          git config --local user.email "huonglee891@gmail.com"
-          git config --local user.name "${{ github.repository_owner }}"
-          git add -A
-          
-          arr[0]="XWorm"
-          arr[1]="XWorm"
-          
-          rand=$[$RANDOM % ${#arr[@]}]
-          
-          git commit -m "${arr[$rand]}"
-          
-      - name: GitHub Push
-        uses: ad-m/github-push-action@master
-        with:
-          force: true
-          directory: "."
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          echo "Date: $(date)" >> log.txt
+          echo "Log updated at $(date)"
+      
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add log.txt
+          git commit -m "Update log: $(date)" || echo "No changes to commit"
+          git push
